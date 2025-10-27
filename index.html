@@ -1,129 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Fakhri - Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Muhammad Fakhri — Portfolio</title>
+  <meta name="description" content="Portfolio Muhammad Fakhri - RPL Student & Trading Enthusiast" />
 
-    <style>
-        body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
+  <style>
+    /* ========== BASIC RESET & BASE ========== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0c0d;
+      color:#e9f0f2;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:960px;margin:0 auto;padding:18px}
 
-        /* Navbar */
-        .navbar {
-            background-color: #1e1e1e;
-            padding: 15px;
-            text-align: center;
-        }
+    /* ========== NAVBAR ========== */
+    header{
+      background:#0f1112;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      position:sticky;top:0;z-index:40;
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;max-width:960px;margin:0 auto}
+    .brand{color:#00c7ff;font-weight:700;letter-spacing:0.3px}
+    nav a{margin-left:18px;font-size:14px;color:#b9c5c7}
+    nav a:hover{color:#00c7ff}
+    .nav-right{display:flex;align-items:center}
 
-        .navbar a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
+    /* mobile nav: stacked */
+    @media(max-width:720px){
+      .nav-inner{flex-direction:column;align-items:flex-start;gap:8px}
+      nav{width:100%}
+      nav a{display:inline-block;margin:8px 10px 0 0}
+    }
 
-        .navbar a:hover {
-            color: #00d0ff;
-        }
+    /* ========== HERO ========== */
+    .hero{padding:48px 18px;text-align:center}
+    .hero h1{font-size:28px;margin-bottom:8px}
+    .subtitle{color:#00c7ff;font-weight:600;margin-bottom:10px}
+    .hero p{color:#bcd0d3;max-width:760px;margin:0 auto}
+    .btn{
+      display:inline-block;margin-top:14px;padding:10px 16px;border-radius:8px;background:#00c7ff;color:#041414;font-weight:700;
+      text-decoration:none;transition:transform .12s ease,box-shadow .12s ease;
+    }
+    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,199,255,0.12)}
 
-        /* Section */
-        section {
-            padding: 40px;
-            text-align: center;
-        }
+    /* ========== SECTIONS ========== */
+    section{padding:36px 0}
+    .section-title{text-align:center;color:#00c7ff;font-weight:700;margin-bottom:18px}
 
-        h2 {
-            color: #00d0ff;
-        }
+    /* ABOUT */
+    .about .card{background:#0e1011;border:1px solid rgba(255,255,255,0.02);padding:14px;border-radius:8px;color:#c9d6d8;max-width:880px;margin:0 auto}
 
-        /* Skills List */
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    /* PROJECTS */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .project{background:#0e1011;border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:8px;transition:transform .14s ease,box-shadow .14s ease}
+    .project:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,0.6)}
+    .project h4{color:#e7f6f8;margin-bottom:8px}
+    .project p{color:#b7c5c6;font-size:14px}
 
-        ul li {
-            background-color: #1e1e1e;
-            padding: 10px;
-            margin: 5px auto;
-            width: 200px;
-            border-radius: 5px;
-        }
+    /* SKILLS (tabel style like image) */
+    .skill-table{width:100%;max-width:720px;margin:0 auto;border-collapse:collapse;border-radius:8px;overflow:hidden}
+    .skill-table td{padding:12px;border:1px solid rgba(255,255,255,0.03);vertical-align:middle}
+    .skill-name{width:35%;font-weight:600;color:#e9f0f2}
+    .skill-status{color:#c7d4d6}
 
-        /* Contact Buttons */
-        .contact a {
-            display: block;
-            color: white;
-            background-color: #00d0ff;
-            width: 200px;
-            margin: 5px auto;
-            padding: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
+    /* CONTACT */
+    .contact-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+    .contact-btn{display:inline-block;padding:10px 14px;border-radius:8px;background:#00c7ff;color:#041414;font-weight:700;text-decoration:none}
+    .contact-btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#d4e0e1;font-weight:600}
 
-        .contact a:hover {
-            background-color: #009ac2;
-        }
+    .contact-note{text-align:center;color:#b7c5c6;margin-top:8px}
 
-        /* Footer */
-        footer {
-            background-color: #1e1e1e;
-            text-align: center;
-            padding: 10px;
-            color: #aaa;
-        }
-    </style>
+    /* FOOTER */
+    footer{padding:20px 0;text-align:center;color:#98a3a5;border-top:1px solid rgba(255,255,255,0.03);margin-top:18px}
+
+    /* ========== SMALL SCREEN ========== */
+    @media(max-width:420px){
+      .hero h1{font-size:22px}
+      .project p{font-size:13px}
+    }
+
+    /* ========== SUBTLE ANIMATIONS (A) reveal on scroll ========== */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
+  <!-- HEADER / NAVBAR -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">MF</div>
+      <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
+        <a href="#project">Project</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- HOME -->
-    <section id="home">
-        <h1>Muhammad Fakhri</h1>
-        <p>RPL Student & Trading Enthusiast</p>
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero container">
+      <h1>Muhammad Fakhri</h1>
+      <div class="subtitle">RPL Student & Trading Enthusiast</div>
+      <p>Saya seorang pelajar Rekayasa Perangkat Lunak yang sedang mempelajari pemrograman web dan memiliki passion di bidang finance & trading. Saat ini saya mengasah skill front-end sambil memperdalam analisa pasar dan jurnal trading sederhana.</p>
+      <a class="btn" href="#about">Lihat Selengkapnya</a>
     </section>
 
     <!-- ABOUT -->
-    <section id="about">
-        <h2>Tentang Saya</h2>
-        <p>Saya seorang pelajar RPL yang sedang mendalami pemrograman web dan memiliki minat di dunia trading.</p>
+    <section id="about" class="about container reveal">
+      <div class="section-title">Tentang</div>
+      <div class="card">
+        <p>Saya biasa belajar dengan pendekatan praktik: membuat halaman latihan untuk memahami layout dan responsive, membaca materi analisa teknikal, serta mencoba simulasi trading (paper trading) untuk mengasah strategi. Fokus saya saat ini adalah kombinasi kemampuan web development dasar dan pemahaman pasar.</p>
+        <p style="margin-top:10px">Tujuan saya sederhana: terus belajar, praktek secara konsisten, dan mencatat apa yang saya pelajari agar progresnya jelas. Saya nyaman bekerja secara mandiri maupun berkolaborasi kecil untuk project latihan.</p>
+      </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section id="project" class="container reveal">
+      <div class="section-title">Project (Campuran)</div>
+      <div class="projects">
+        <div class="project">
+          <h4>Landing Page Latihan</h4>
+          <p>Simple landing page yang dibuat untuk latihan layout, responsive, dan penggunaan grid / flexbox (HTML & CSS dasar).</p>
+        </div>
+
+        <div class="project">
+          <h4>Dashboard Simulasi Trading</h4>
+          <p>Prototype sederhana menampilkan chart static, jurnal trading, dan ringkasan performa; fokus pada UI layout untuk data trading.</p>
+        </div>
+
+        <div class="project">
+          <h4>Analisa Pasar — Contoh</h4>
+          <p>Contoh analisa singkat (topik: candlestick pattern & price action) yang saya gunakan untuk latihan menulis jurnal trading.</p>
+        </div>
+      </div>
     </section>
 
     <!-- SKILLS -->
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML Dasar</li>
-            <li>CSS Dasar</li>
-            <li>JavaScript Dasar</li>
-            <li>Basic Trading</li>
-        </ul>
+    <section id="skills" class="container reveal">
+      <div class="section-title">Skills</div>
+
+      <table class="skill-table" role="table" aria-label="Skills table">
+        <tr>
+          <td class="skill-name">HTML</td>
+          <td class="skill-status">✅ Sudah paham dasar</td>
+        </tr>
+        <tr>
+          <td class="skill-name">CSS</td>
+          <td class="skill-status">✅ Bisa bikin tampilan rapi</td>
+        </tr>
+        <tr>
+          <td class="skill-name">Python</td>
+          <td class="skill-status">⚙️ Sedang diperdalam</td>
+        </tr>
+        <tr>
+          <td class="skill-name">C++</td>
+          <td class="skill-status">🧩 Masih latihan logic</td>
+        </tr>
+        <tr>
+          <td class="skill-name">JavaScript</td>
+          <td class="skill-status">⚙️ On Progress</td>
+        </tr>
+        <tr>
+          <td class="skill-name">Technical Analysis</td>
+          <td class="skill-status">📈 Beginner – Intermediate</td>
+        </tr>
+        <tr>
+          <td class="skill-name">Price Action</td>
+          <td class="skill-status">📈 Aktif belajar tiap hari</td>
+        </tr>
+        <tr>
+          <td class="skill-name">Risk Management</td>
+          <td class="skill-status">✅ Memahami dasar manajemen risiko</td>
+        </tr>
+        <tr>
+          <td class="skill-name">Fundamental Awareness</td>
+          <td class="skill-status">💡 Mengenal CPI, FOMC, PPI, NFP</td>
+        </tr>
+        <tr>
+          <td class="skill-name">Trading Psychology</td>
+          <td class="skill-status">🧠 Fokus pada disiplin & jurnal</td>
+        </tr>
+      </table>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact">
-            <a href="https://wa.me/62XXXXXXXXXX" target="_blank">WhatsApp</a>
-            <a href="mailto:contoh@email.com">Email</a>
-        </div>
-    </section>
+    <section id="contact" class="container reveal">
+      <div class="section-title">Contact</div>
+      <p class="contact-note">Hubungi saya lewat WhatsApp atau Instagram — cepat & sederhana.</p>
 
-    <footer>
-        © 2025 Muhammad Fakhri
-    </footer>
+      <div class="contact-row">
+        <!-- Ganti WA_NUMBER jadi nomor WA lo format internasional tanpa tanda + -->
+        <a class="contact-btn" href="https://wa.me/WA_NUMBER" target="_blank" rel="noopener">WhatsApp</a>
+
+        <a class="contact-btn secondary" href="https://instagram.com/mhd.f4hriii" target="_blank" rel="noopener">@mhd.f4hriii</a>
+
+        <a class="contact-btn secondary" href="mailto:muhammadfakhri3957@gmail.com">Email</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div>Bio: Pelajar RPL yang suka coding & aktif belajar trading.</div>
+      <div style="margin-top:8px">© 2025 Muhammad Fakhri</div>
+    </div>
+  </footer>
+
+  <!-- ========== JS: reveal on scroll (very small) & smooth scroll ========== -->
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', e=>{
+        const target = document.querySelector(link.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+
+    // Reveal on scroll (A) - IntersectionObserver (very small, widely supported)
+    const reveals = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const obs = new IntersectionObserver((entries, observer)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.18});
+      reveals.forEach(r=>obs.observe(r));
+    } else {
+      // fallback: show all
+      reveals.forEach(r=>r.classList.add('visible'));
+    }
+  </script>
 
 </body>
 </html>
